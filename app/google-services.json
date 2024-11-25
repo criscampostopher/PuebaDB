@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "243781087392",
+    "firebase_url": "https://basedatosfirebase2022-ef94d-default-rtdb.firebaseio.com",
+    "project_id": "basedatosfirebase2022-ef94d",
+    "storage_bucket": "basedatosfirebase2022-ef94d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243781087392:android:741952d8dca42e69f4d9c5",
+        "android_client_info": {
+          "package_name": "cl.ipvg.puebadb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqbRuBeEAf5hILNcowqafHYGYkxBJEwag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243781087392:android:3f87a5a7b19bffdaf4d9c5",
+        "android_client_info": {
+          "package_name": "cl.isisur.basedatosfirebase2022"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqbRuBeEAf5hILNcowqafHYGYkxBJEwag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
