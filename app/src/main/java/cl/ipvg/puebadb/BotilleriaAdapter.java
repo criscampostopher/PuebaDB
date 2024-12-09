@@ -50,13 +50,14 @@ public class BotilleriaAdapter extends RecyclerView.Adapter<BotilleriaAdapter.Vi
             intent.putExtra("LONGITUD", botilleria.getCoordenadas().getLongitud());
             context.startActivity(intent);
         });
-        /*Debo mandar los datos del usuario para que el joset los registre en la tabla compras
+        //Debo mandar los datos del usuario para que el joset los registre en la tabla compras
+
         holder.btnComprar.setOnClickListener(v -> {
-            Intent intent = new Intent(context, MapsActivity.class);
+            Intent intent = new Intent(context, MainActivity3.class);
             intent.putExtra("LATITUD", botilleria.getCoordenadas().getLatitud());
             intent.putExtra("LONGITUD", botilleria.getCoordenadas().getLongitud());
             context.startActivity(intent);
-        });*/
+        });
     }
 
     @Override
@@ -69,6 +70,7 @@ public class BotilleriaAdapter extends RecyclerView.Adapter<BotilleriaAdapter.Vi
         ImageView imgBotilleria;
         Button btnVerEnMapa;
         Button btnComprar;
+
 
         public ViewHolder( View itemView) {
             super(itemView);
