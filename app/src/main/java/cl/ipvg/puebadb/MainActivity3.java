@@ -1,6 +1,9 @@
 package cl.ipvg.puebadb;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,8 @@ import java.util.List;
 
 public class MainActivity3 extends AppCompatActivity {
 
+
+    private Button btnVerCarrito;
     private RecyclerView recyclerView;
     private ProductoAdapter productoAdapter;
     private List<Producto> listaProductos;
@@ -31,7 +36,7 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        recyclerView = findViewById(R.id.recyclerViewProductos);
+        recyclerView = findViewById(R.id.recyclerProductos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listaProductos = new ArrayList<>();
         productoAdapter = new ProductoAdapter(this, listaProductos);
@@ -39,7 +44,21 @@ public class MainActivity3 extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("productos");
         cargarProductos();
+
+
+        btnVerCarrito = findViewById(R.id.btnVerCarrito);
+
+
+        btnVerCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navegar a la pantalla del carrito
+                Intent intent = new Intent(MainActivity3.this, MainActivity4.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
 
     private void cargarProductos() {

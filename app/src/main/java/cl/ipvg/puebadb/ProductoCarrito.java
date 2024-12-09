@@ -1,29 +1,28 @@
 package cl.ipvg.puebadb;
 
-public class Producto {
-
+public class ProductoCarrito {
+    private String idProducto;
     private String nombre;
-    private String imagenUrl;
     private int cantidad;
     private double precio;
-    private  String Id;
 
-    public Producto() {
-        // Constructor vacío requerido para Firebase
+    public ProductoCarrito() {
     }
 
-    public Producto(String nombre, String imagenUrl, int cantidad, double precio,String Id) {
+    public ProductoCarrito(String idProducto, String nombre, int cantidad, double precio) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
-        this.imagenUrl = imagenUrl;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.Id = Id;
     }
 
-    public String getId() {
-        return Id;
+    public String getIdProducto() {
+        return idProducto;
     }
 
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
+    }
 
     public String getNombre() {
         return nombre;
@@ -31,14 +30,6 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getImagenUrl() {
-        return imagenUrl;
-    }
-
-    public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl;
     }
 
     public int getCantidad() {
@@ -56,5 +47,8 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-}
 
+    public double calcularTotal() {
+        return cantidad * precio;
+    }
+}

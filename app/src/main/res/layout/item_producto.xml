@@ -49,10 +49,11 @@
             android:layout_height="wrap_content"
             android:text="Precio: $0.00"
             android:textSize="14sp" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btAgregar"
         android:layout_width="14dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

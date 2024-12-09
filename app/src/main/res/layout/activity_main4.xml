@@ -6,21 +6,24 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- RecyclerView para la lista de productos -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProductos"
+        android:id="@+id/recyclerViewCarrito"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:layout_weight="1" />
 
-    <!-- Botón para ir al carrito de compras -->
+    <TextView
+        android:id="@+id/tvTotalCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Total: $0.00"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <Button
-        android:id="@+id/btnVerCarrito"
+        android:id="@+id/btnFinalizarCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Ver Carrito"
-
-        android:textColor="@android:color/white" />
+        android:text="Finalizar Compra" />
 </LinearLayout>
