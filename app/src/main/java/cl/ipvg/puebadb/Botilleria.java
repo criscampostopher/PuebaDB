@@ -34,6 +34,7 @@ public class Botilleria {
 
 
 
+
     // Clase interna para las coordenadas
     public static class Coordenadas {
         private double latitud;

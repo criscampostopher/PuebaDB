@@ -1,16 +1,14 @@
 package cl.ipvg.puebadb;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,56 +16,45 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity2 extends AppCompatActivity {
 
-
+    private RecyclerView recyclerView;
+    private BotilleriaAdapter adapter;
+    private List<Botilleria> botilleriaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TextView  nombreBotilleria;
-        TextView   direccionBotilleria;
-         Button  verEnMapaButton;        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Inicializa las vistas
-        nombreBotilleria = findViewById(R.id.nombreBoti);
-        direccionBotilleria = findViewById(R.id.direccionBoti);
-        verEnMapaButton = findViewById(R.id.verMapa);
+        recyclerView = findViewById(R.id.recyclerViewBotillerias);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Conecta a Firebase Realtime Database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference botilleriasRef = database.getReference("botillerias");
+        botilleriaList = new ArrayList<>();
+        adapter = new BotilleriaAdapter(this, botilleriaList);
+        recyclerView.setAdapter(adapter);
 
+        // Obtener referencia a Firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("botillerias");
 
-        // Lee los datos de la base de datos
-        botilleriasRef.addValueEventListener(new ValueEventListener() {
+        // Leer datos de Firebase
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Botilleria botilleria = snapshot.getValue(Botilleria.class);
-                    if (botilleria != null) {
-                        // Muestra los datos en las etiquetas (Labels)
-
-                        nombreBotilleria.setText(botilleria.getNombre());
-                        direccionBotilleria.setText(botilleria.getDireccion());
-
-                        // Lógica para el botón de ver en mapa
-
-                        verEnMapaButton.setOnClickListener(v -> {
-                            // Llama a la actividad del mapa con los datos de latitud y longitud
-                            Intent intent = new Intent(MainActivity2.this, MapsActivity.class);
-                            intent.putExtra("LATITUD", botilleria.getCoordenadas().getLatitud());
-                            intent.putExtra("LONGITUD", botilleria.getCoordenadas().getLongitud());
-                            startActivity(intent);
-                        });
-                    }
+            public void onDataChange( DataSnapshot snapshot) {
+                botilleriaList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Botilleria botilleria = dataSnapshot.getValue(Botilleria.class);
+                    botilleriaList.add(botilleria);
                 }
+                adapter.notifyDataSetChanged();
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Maneja el error en caso de que la lectura falle
-                Log.e("FirebaseError", databaseError.getMessage());
+            public void onCancelled( DatabaseError error) {
+                Log.e("FirebaseError", error.getMessage());
             }
         });
     }
